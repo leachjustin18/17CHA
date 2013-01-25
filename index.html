@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    </head>
+    <body>
+       <div id="wrapper">
+        		<div id="kTitle">Knowledge Check</div>
+        <div id="textSection"> 
+        <div class="question1">
+<div class="qTitle"><span class="qActive">Question 1</span> of 3</div> 
+<div class="qText">You have just received your patient assignment at change of shift. You will be caring for a four-year old patient who has an IV in the antecubital area infusing Phenytoin. The IV pump is alarming as you enter the room. As you complete your initial assessment, you find the child's arm secured to an armboard with gauze covering the entire antecubital area. You remove the gauze to find a large reddened area, beginning to look like a bubble surrounding the insertion site.<span class="instructions"> This is a sign of one of the following?</span></div>
+<div class="radiolabel">
+  <ul class="defaultList">
+    <li><input type="radio" name="q0" number="0" />Phlebitis</li>
+    <li><input type="radio" name="q0" number="0" />Infiltration</li>
+    <li><input type="radio" name="q0" number="0" />Extravasation</li>
+    </ul>
+    </div>
+</div>
+ <div class="question2 hidden">
+<div class="qTitle"><span class="qActive">Question 2</span> of 3</div> 
+<div class="qText"><span class="instructions"> What should be your first step?</span></div>
+<div class="radiolabel">
+    <ul class="defaultList">
+    <li><input type="radio" name="q1" number="1" />Immediately call the medical team</li>
+    <li><input type="radio" name="q1" number="1" />Stop the infusion</li>
+    <li><input type="radio" name="q1" number="1" />Complete your assessment and document your findings</li>
+    </ul>
+    </div>
+</div>
+ <div class="question3 hidden">
+<div class="qTitle"><span class="qActive">Question 3</span> of 3</div> 
+<div class="qText"><span class="instructions"> After stopping the infusion, the next step is?</span></div>
+<div class="radiolabel">
+    <ul class="defaultList">
+    <li><input type="radio" name="q2" number="2" />Document the findings</li>
+    <li><input type="radio" name="q2" number="2" />Call the medical team</li>
+    <li><input type="radio" name="q2" number="2" />Remove the IV catheter</li>
+    </ul>
+    </div>
+</div>
+        <div class="cA correct hidden answers">
+  			<div class="sectionTitle">Correct!</div>
+		  This is a sign of extravasation. Although the patient has an IV in a larger peripheral vein, phenytoin is a caustic medication. Blisters are a sign of tissue damage.
+  		</div>		
+      <div class="iA incorrect hidden answers"> 
+  			<div class="sectionTitle">Incorrect.</div>
+			This is a sign of extravasation. Although the patient has an IV in a larger peripheral vein, phonation is a caustic medication. Blisters are a sign of tissue damage. Signs of extravasation include tissue damage, infection, tissue necrosis, and disfigurement.</div>
+  		</div>
+       <div class="cB correct hidden answers">
+        <div class="sectionTitle">Correct!</div>
+      The first step for management of any IV complication is to STOP the infusion. Prevent further damage by discontinuing the flow of irritant solution into the tissue.
+      </div>
+      <div class="iB incorrect hidden answers"> 
+        <div class="sectionTitle">Incorrect.</div>
+     The first step for management of any IV complication is to <strong>STOP</strong> the infusion. Prevent further damage by discontinuing the flow of irritant solution into the tissue.  
+      </div>
+        <div class="cC correct hidden answers">
+        <div class="sectionTitle">Correct!</div>
+      After stopping the infusion, your next priority should be to contact the medical team. You may order an antidote  to counteract the effects of the infused medication. If you suspect extravasation, never remove the IV until you note the physician's order.
+      </div>
+      <div class="iC incorrect hidden answers"> 
+        <div class="sectionTitle">Incorrect.</div>
+        After stopping the infusion, your next priority should be to contact the medical team. You may order an antidote to counteract the effects of the infused medication. If you suspect extravasation, never remove the IV until you note the physician's order. Then you may document your findings and the patient's response to treatment.
+        </div>
+           <input type="button" class="next hidden" value="Next Question">
+</div> 
+        <script type="text/javascript" charset="utf-8" async>
+       (function() {
+         var count = 0,
+           count1 = 1;
+         var $sel = {
+           radio: $(':radio'),
+           nextBtn: $('.next'),
+           allAnswers: $('.answers'),
+           q: '.question'
+         };
+         //Individual Answers and remedations for each quesstion 
+         var ans = [{
+           a: [2],
+           corrAnswer: $('.cA'),
+           inCorrAnswer: $('.iA')
+         }, {
+           a: [1],
+           corrAnswer: $('.cB'),
+           inCorrAnswer: $('.iB')
+         }, {
+           a: [1],
+           corrAnswer: $('.cC'),
+           inCorrAnswer: $('.iC')
+         }]
+         $sel.radio.click(function() {
+           //A counter to show the next question, hide the previous, and to test for the last question to hide the next button 
+           count++;
+           count1++;
+           var num = parseInt($(this).attr('number'));
+           //Select the specific question you are answered and grab the index of it
+           var radioIdx = $('input[name="q' + [num] + '"]').index($(this));
+           //Loop through each question
+           for(var aIndex = 0; aIndex < ans[num].a.length; aIndex++) {
+             //Disable all radio buttons 
+             $sel.radio.attr('disabled', true);
+             if(radioIdx === ans[num].a[aIndex]) {
+               ans[num].corrAnswer.removeClass('hidden');
+             } else {
+               ans[num].inCorrAnswer.removeClass('hidden');
+             }
+             //Ensure that the next button will not show after the last quesiton is answered 
+             if(count !== 3) {
+               $sel.nextBtn.show();
+             }
+           }
+         });
+         //Next button function 
+         $sel.nextBtn.click(function() {
+           $sel.allAnswers.addClass('hidden');
+           $sel.radio.attr('disabled', false);
+           $($sel.q + count).hide();
+           $sel.nextBtn.hide();
+           $($sel.q + count1).show();
+         });
+       })();
+        </script>
+    </body>
+</html>	

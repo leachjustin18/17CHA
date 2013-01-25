@@ -1,0 +1,1 @@
+Created a radio button test like before, but this time looked for different ways of not repeating code twice and moving the code below the content.
